@@ -11,18 +11,20 @@ datasource db {
 }
 
 model Games {
-  id         Int         @id @default(autoincrement())
-  name       String
-  price      Int
-  stock      Int         @default(0)
-  Categories Categories? @relation(fields: [category], references: [id])
-  category   Int?
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String
+  photo       String
+  price       Int
+  stock       Int         @default(0)
+  Categories  Categories? @relation(fields: [category], references: [id])
+  category    Int?
 
   @@map("games")
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   name     String
   password String
   email    String

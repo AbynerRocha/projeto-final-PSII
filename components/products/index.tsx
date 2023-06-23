@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiFillTag } from 'react-icons/ai'
+import Image from 'next/image'
 
 type Props = {
     name: string;
@@ -14,9 +15,11 @@ export default function Product({ name, photo, description, price, category }: P
         <div className='flex-shrink-0 bg-zinc-800 rounded-md shadow-sm h-fit w-fit p-10 border-2 border-zinc-800 hover:border-2 hover:border-zinc-700'>
             <div className='flex flex-col items-center py-4'>
                 <div className='h-40 w-42'>
-                    <img
+                    <Image
                         src={photo}
                         alt={name}
+                        width='150'
+                        height='150'
                         className='text-zinc-100 object-fill w-[100%] h-[100%]'
                     />
                 </div>

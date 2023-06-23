@@ -1,8 +1,26 @@
 import Header from '@/components/Header'
 import Product from '@/components/products'
+import { auth as AuthContext } from '@/context/auth'
+import { Games } from '@prisma/client'
+import { GetServerSideProps } from 'next'
 import React from 'react'
 
+type Props = {
+	games: Games[]
+}
+
+
 export default function Home() {
+	const auth = AuthContext
+
+	function getData() {
+		const res = fetch('api/games')
+		.catch((err) => {
+			
+		})
+	}
+
+
 	return (
 		<div className='h-screen w-full bg-zinc-900 overflow-x-hidden'>
 			<Header/>
