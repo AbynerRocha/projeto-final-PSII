@@ -1,8 +1,6 @@
-import Header from '@/components/Header'
 import Product from '@/components/products'
 import { auth as AuthContext } from '@/context/auth'
 import { Games } from '@prisma/client'
-import { GetServerSideProps } from 'next'
 import React from 'react'
 
 type Props = {
@@ -13,25 +11,17 @@ type Props = {
 export default function Home() {
 	const auth = AuthContext
 
-	function getData() {
-		const res = fetch('api/games')
-		.catch((err) => {
-			
-		})
-	}
-
 
 	return (
-		<div className='h-screen w-full bg-zinc-900 overflow-x-hidden'>
-			<Header/>
+		<div className='h-screen w-full overflow-x-hidden'>
 			<main className=''>
 				<div>
 					<div className='ml-6 mb-4 flex flex-row space-x-3 items-center'>
-						<div className='h-8 w-2 bg-zinc-700 rounded-lg' />
+						<div className='h-8 w-2 bg-green-400 rounded-lg' />
 						<h3 className='text-zinc-100 font-semibold text-2xl '>Mais Vendidos 🚀</h3>
 					</div>
 
-					<div className='flex overflow-x-hidden hover:overflow-x-scroll py-3 space-x-8 mx-5 h-fit'>
+					<div className='flex overflow-x-hidden hover:overflow-x-auto py-3 space-x-8 mx-5 h-fit'>
 						<Product
 							name='Teste 1'
 							description='teste'
