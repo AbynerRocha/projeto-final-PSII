@@ -31,7 +31,7 @@ export default function Admin() {
         return data
     }
 
-    if(isFetching) return (
+    if (isFetching) return (
         <div className='bg-zinc-900 flex h-screen justify-center items-center'>
             <MoonLoader size={45} color='white' />
         </div>
@@ -39,7 +39,7 @@ export default function Admin() {
     return (
         <div className='bg-zinc-900 h-screen'>
             <div className='my-5 flex items-end justify-between'>
-                <Link 
+                <Link
                     href={'/admin/add/game'}
                     className='bg-green-500 text-zinc-100 p-3 rounded-md ml-3 hover:bg-green-600'
                 >
@@ -51,13 +51,13 @@ export default function Admin() {
                         className=' border-none  bg-transparent focus:outline-none'
                         type="text"
                         placeholder='Pesquisar'
-                        onChange={({ target: { value }}) => {
+                        onChange={({ target: { value } }) => {
                             const searchData = games.filter(item => item.name.includes(value))
                             console.log(searchData);
-                            
+
                             setSearch(searchData)
                         }}
-                    />  
+                    />
                 </div>
             </div>
 
@@ -77,14 +77,14 @@ export default function Admin() {
                     <tbody>
                         {search.length === 0 ? games.length > 0 && games.map((game, idx) => {
                             return (
-                                <tr key={idx} className='border-b border-gray-700 hover:bg-gray-600 '>
+                                <tr key={idx} className='border-b border-gray-700 hover:bg-gray-600 transition duration-300 ease-in-out'>
                                     <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{game.id}</td>
                                     <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{game.name}</td>
                                     <td>{game.description.slice(0, 80) + '...'}</td>
                                     <td>{game.price} €</td>
                                     <td>{game.stock} und.</td>
                                     <td>{game.Categories.name}</td>
-                                    <td><Link className='text-blue-400 text-md font-semibold' href={'admin/gerir/'+game.id}>Gerir</Link></td>
+                                    <td><Link className='text-blue-400 text-md font-semibold' href={'admin/gerir/' + game.id}>Gerir</Link></td>
                                 </tr>
                             )
                         }) : search.map((game, idx) => {
@@ -96,7 +96,7 @@ export default function Admin() {
                                     <td>{game.price} €</td>
                                     <td>{game.stock} und.</td>
                                     <td>{game.category}</td>
-                                    <td><Link className='text-blue-400 text-md font-semibold' href={'admin/gerir/'+game.id}>Gerir</Link></td>
+                                    <td><Link className='text-blue-400 text-md font-semibold' href={'admin/gerir/' + game.id}>Gerir</Link></td>
                                 </tr>
                             )
                         })}

@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
             description,
             photo: 'https://upload.wikimedia.org/wikipedia/pt/thumb/8/80/Grand_Theft_Auto_V_capa.png/250px-Grand_Theft_Auto_V_capa.png',
             category: categoryId,
+            stock: initialStock
         }
     })    
 

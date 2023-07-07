@@ -1,3 +1,6 @@
 export default {
-    API_URL: 'https://7b19-34-78-171-139.ngrok-free.app/'
+    COOKIES_PREFIXES: {
+        AUTH_TOKEN: 'gamespace:token_athlg'
+    },
+    SECRET_TOKEN: 'jwtSecret__'
 }

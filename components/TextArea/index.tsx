@@ -1,12 +1,10 @@
-import React, { InputHTMLAttributes } from 'react'
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import React, { InputHTMLAttributes, TextareaHTMLAttributes } from 'react'
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     variant: 'normal' | 'error' | 'light'| 'light-error';
-    isShowing?: boolean;
 }
 
-export default function Input({ variant, isShowing=false, ...rest }: Props) {
+export default function TextArea({ variant, ...rest }: Props) {
 
     const variants = {
         normal: 'p-3 rounded-md bg-zinc-700 focus:outline-none focus:bg-zinc-600 border border-zinc-700 hover:bg-zinc-600 focus:border-zinc-500 placeholder:text-sm placeholder:text-zinc-400 transition duration-300 ease-in-out',
@@ -30,8 +28,10 @@ export default function Input({ variant, isShowing=false, ...rest }: Props) {
         }
     }
 
-    return <input
-        className={getVariant(variant) + ' ' + rest.className}
-        {...rest}
-    />
+    return (
+        <textarea
+            className={getVariant(variant) + ' ' + rest.className}
+            {...rest}
+        />
+    )
 }

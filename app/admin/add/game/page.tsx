@@ -15,15 +15,7 @@ export default function AddGame() {
     const [initialStock, setInitialStock] = useState(0)
     const [category, setCategory] = useState(0)
     const [categories, setCategories] = useState<Categories[]>([])
-    const [error, setError] = useState({ error: 'Pal', targetError: 'message' })
-
-    const requiredFields = [
-        { field: name, targetError: 'name' },
-        { field: description, targetError: 'description' },
-        { field: price, targetError: 'price' },
-        { field: initialStock, targetError: 'initialStock' },
-        { field: category, targetError: 'category' }
-    ];
+    const [error, setError] = useState({ error: '', targetError: '' })
 
     useEffect(() => {
         getAllCategories()
@@ -37,18 +29,39 @@ export default function AddGame() {
     }
 
     async function handleSubmit() {
-        // for (const field of requiredFields) {
-        //     if (!field.field) {
-        //         setError({
-        //             error: 'Este campo é obrigatório.',
-        //             targetError: field.targetError
-        //         })
+        
+        if(name === '') {
+            setError({
+                error: 'Este campo é obrigatório.',
+                targetError: 'name'
+            })
+            return
+        } else if(description === '') {
+            setError({
+                error: 'Este campo é obrigatório.',
+                targetError: 'description'
+            })
+            return
+        } else if(category === 0) {
+            setError({
+                error: 'Este campo é obrigatório.',
+                targetError: 'category'
+            })
+            return
+        } else if(price === 0) {
+            setError({
+                error: 'Este campo é obrigatório.',
+                targetError: 'price'
+            })
+            return
+        } else if(initialStock === 0) {
+            setError({
+                error: 'Este campo é obrigatório.',
+                targetError: 'initialStock'
+            })
+            return
+        }
 
-        //         console.log(field.targetError);
-
-        //         return
-        //     }
-        // }
 
         fetch('/api/games/add', {
             method: 'POST',
@@ -63,7 +76,7 @@ export default function AddGame() {
             .then((res) => res.json())
             .then((data: { gameInserted?: Games; error?: string; message?: string; }) => {
                 if (data.gameInserted) {
-                    router.push('/product/' + data.gameInserted.id)
+                    router.push('/admin/')
                     return
                 }
 

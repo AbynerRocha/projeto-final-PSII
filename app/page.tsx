@@ -1,19 +1,44 @@
-import Product from '@/components/products'
-import { auth as AuthContext } from '@/context/auth'
-import { Games } from '@prisma/client'
-import React from 'react'
+'use client'
 
-type Props = {
-	games: Games[]
-}
+import { GamesData } from '@/@types/games'
+import Message from '@/components/Message'
+import Product from '@/components/products'
+import { useAuth } from '@/context/auth'
+import React from 'react'
+import { useQuery } from 'react-query'
+import { MoonLoader } from 'react-spinners'
 
 
 export default function Home() {
-	const auth = AuthContext
+	const auth = useAuth()
 
+	const { data, isFetching, isError } = useQuery<GamesData[]>('getGames', async () => {
+		const res = await fetch('/api/games/')
+		
+		if(res.status !== 200) throw new Error('Erro no lado do servidor.')
 
+		const data = await res.json()
+
+		return data.result
+	})
+
+	if(isFetching) return (
+        <div className='bg-zinc-900 flex h-screen justify-center items-center'>
+            <MoonLoader size={45} color='white' />
+        </div>
+    )
+
+	if(isError) return (
+		<div className='bg-zinc-900 flex h-screen justify-center items-center'>
+            <Message
+				variant='error'
+				message='Ocorreu um erro, não foi possivel realizar a consulta.'
+			/>
+        </div>
+	)
+	
 	return (
-		<div className='h-screen w-full overflow-x-hidden'>
+		<div className='bg-zinc-900 h-screen w-full overflow-x-hidden'>
 			<main className=''>
 				<div>
 					<div className='ml-6 mb-4 flex flex-row space-x-3 items-center'>
@@ -22,37 +47,18 @@ export default function Home() {
 					</div>
 
 					<div className='flex overflow-x-hidden hover:overflow-x-auto py-3 space-x-8 mx-5 h-fit'>
-						<Product
-							name='Teste 1'
-							description='teste'
-							photo='https://upload.wikimedia.org/wikipedia/pt/thumb/8/80/Grand_Theft_Auto_V_capa.png/250px-Grand_Theft_Auto_V_capa.png'
-							price={10} category="jogo"
-						/>
-						<Product
-							name='Teste 2'
-							description='teste'
-							photo='https://image.api.playstation.com/cdn/UP0001/CUSA04459_00/qBxvfDJJ9dbavai6xsWOcWaxRDGRb7h0.png'
-							price={10} category="jogo"
-						/>
-						<Product
-							name='Teste 3'
-							description='teste'
-							photo='https://upload.wikimedia.org/wikipedia/pt/thumb/8/80/Grand_Theft_Auto_V_capa.png/250px-Grand_Theft_Auto_V_capa.png'
-							price={10} category="jogo"
-						/>
-						<Product
-							name='Teste 4'
-							description='testeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-							photo='https://upload.wikimedia.org/wikipedia/pt/thumb/8/80/Grand_Theft_Auto_V_capa.png/250px-Grand_Theft_Auto_V_capa.png'
-							price={10} category="jogo"
-						/>
-						<Product
-							name='Teste 4'
-							description='testeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-							photo='https://upload.wikimedia.org/wikipedia/pt/thumb/8/80/Grand_Theft_Auto_V_capa.png/250px-Grand_Theft_Auto_V_capa.png'
-							price={10} category="jogo"
-						/>
-
+						{data && data.length > 0 && data.slice(0, 4).map((game, idx) => {
+							return (
+								<Product
+									key={idx}
+									name={game.name}
+									description={game.description}
+									category={game.Categories.name}
+									price={game.price}
+									photo={game.photo}
+								/>
+							)
+						})}
 					</div>
 				</div>
 			</main>
