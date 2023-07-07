@@ -8,8 +8,8 @@ type Props = {
 
 export default function Message({ variant, message }: Props) {
     const variants = {
-        error: 'flex flex-row items-center space-x-2 p-4 text-sm rounded-md border-2 border-red-500 bg-transparent text-zinc-100 max-w-full break-words',
-        info: 'flex flex-row items-center space-x-2 p-4 text-sm rounded-md border-2 border-blue-600 bg-transparent text-zinc-100 max-w-full break-words',
+        error: 'flex flex-row items-center space-x-2 p-4 text-sm rounded-md border-2 border-red-500 bg-transparent text-zinc-800 dark:text-zinc-100 max-w-full break-words',
+        info: 'flex flex-row items-center space-x-2 p-4 text-sm rounded-md border-2 border-blue-600 bg-transparent text-zinc-800 dark:text-zinc-100 max-w-full break-words',
         success: ''
     }
 

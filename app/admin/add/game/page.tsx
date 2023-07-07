@@ -2,6 +2,7 @@
 
 import Input from '@/components/Input'
 import Message from '@/components/Message'
+import TextArea from '@/components/TextArea'
 import { Categories, Games } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -15,7 +16,7 @@ export default function AddGame() {
     const [initialStock, setInitialStock] = useState(0)
     const [category, setCategory] = useState(0)
     const [categories, setCategories] = useState<Categories[]>([])
-    const [error, setError] = useState({ error: '', targetError: '' })
+    const [error, setError] = useState({ error: 'aaaaaaaaaa', targetError: 'message' })
 
     useEffect(() => {
         getAllCategories()
@@ -105,7 +106,7 @@ export default function AddGame() {
     return (
         <div className=''>
             <div className='flex justify-center items-center flex-col text-zinc-100'>
-                <h1 className='text-zinc-100 text-2xl font-semibold mb-3'>Adicionar Jogo</h1>
+                <h1 className='text-zinc-900 dark:text-zinc-100 text-2xl font-semibold mb-3'>Adicionar Jogo</h1>
                 <form className='flex flex-col w-1/5 space-y-3' onSubmit={(e) => {
                     e.preventDefault()
 
@@ -123,10 +124,8 @@ export default function AddGame() {
                     </div>
                     <div className='flex flex-col space-y-2 max-w-full break-words'>
                         <label htmlFor="" className='text-sm'>Descrição</label>
-                        <textarea
-                            className={error.targetError === 'description'
-                                ? 'p-3 rounded-md bg-zinc-700 focus:outline-none focus:bg-zinc-600 border border-red-500 hover:bg-zinc-600 focus:border-red-500 placeholder:text-sm placeholder:text-red-400'
-                                : 'p-3 rounded-md bg-zinc-700 focus:outline-none focus:bg-zinc-600 border border-zinc-700 hover:bg-zinc-600 focus:border-zinc-500 placeholder:text-sm placeholder:text-zinc-400'}
+                        <TextArea
+                            variant={error.targetError === 'description' ? 'error' : 'normal'}
                             placeholder='Digite aqui'
                             onChange={({ target: { value } }) => setDescription(value)}
                         />
@@ -169,8 +168,8 @@ export default function AddGame() {
                             }}
                             defaultValue={0}
                             className={error.targetError === 'category'
-                                ? 'bg-zinc-700 border-none p-3 rounded-md text-red-400 focus:outline-red-500 hover:bg-zinc-600 border border-red-500 focus:border-red-500 placeholder:text-red-400'
-                                : 'bg-zinc-700 border-none p-3 rounded-md text-zinc-200 focus:outline-none hover:bg-zinc-600 border border-zinc-700 focus:border-zinc-500'}
+                                ? 'bg-zinc-100 dark:bg-zinc-700 border-none p-3 rounded-md text-zinc-700 dark:text-red-400 focus:outline-red-500 hover:bg-zinc-300 dark:hover:bg-zinc-600 border border-red-500 focus:border-red-500 placeholder:text-red-400'
+                                : 'bg-zinc-100 dark:bg-zinc-700 border-none p-3 rounded-md text-zinc-700 dark:text-zinc-200 focus:outline-none hover:bg-zinc-300 dark:hover:bg-zinc-600 border border-zinc-400 dark:border-zinc-700 focus:bg-zinc-300 dark:focus:border-zinc-500'}
                         >
                             <option value={0}>Selecione uma categoria</option>
 
@@ -184,7 +183,7 @@ export default function AddGame() {
 
                     <div>
                         <button
-                            className='bg-green-500 p-3 rounded-md hover:bg-green-600 w-full mt-2 text-zinc-950 font-semibold'
+                            className='bg-green-500 p-3 rounded-md hover:bg-green-600 w-full mt-2 text-zinc-100 dark:text-zinc-950 font-semibold'
                             type='submit'
                         >
                             Adicionar

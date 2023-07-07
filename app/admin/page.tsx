@@ -31,13 +31,14 @@ export default function Admin() {
         return data
     }
 
-    if (isFetching) return (
-        <div className='bg-zinc-900 flex h-screen justify-center items-center'>
-            <MoonLoader size={45} color='white' />
+    if(isFetching) return (
+        <div className='bg-zinc-200 dark:bg-zinc-900 flex h-screen justify-center items-center'>
+            <MoonLoader size={45} className='text-black dark:text-white' />
         </div>
     )
+    
     return (
-        <div className='bg-zinc-900 h-screen'>
+        <div className='bg-zinc-200 dark:bg-zinc-900 h-screen'>
             <div className='my-5 flex items-end justify-between'>
                 <Link
                     href={'/admin/add/game'}
@@ -46,7 +47,7 @@ export default function Admin() {
                     Adicionar
                 </Link>
 
-                <div className='rounded-md mr-3 py-2 px-3 bg-zinc-700 border border-zinc-900 text-zinc-100 flex items-center justify-center hover:bg-zinc-600'>
+                <div className='rounded-md mr-3 py-2 px-3 bg-zinc-300 dark:bg-zinc-700 border border-zinc-400 dark:border-zinc-900 text-zinc-800 dark:text-zinc-100 flex items-center justify-center hover:bg-zinc-300 dark:hover:bg-zinc-600'>
                     <input
                         className=' border-none  bg-transparent focus:outline-none'
                         type="text"
@@ -62,41 +63,41 @@ export default function Admin() {
             </div>
 
             <div className='relative overflow-x-auto sm:rounded-lg mx-3'>
-                <table className='w-full text-sm text-left text-gray-500'>
-                    <thead className='text-xs text-gray-400 uppercase bg-gray-700 p-3'>
+                <table className='w-full text-sm text-left text-gray-700 dark:text-gray-500'>
+                    <thead className='text-xs text-gray-700 dark:text-gray-400 uppercase bg-gray-300  dark:bg-gray-700 p-3'>
                         <tr>
-                            <th className="px-6 py-3 border-r border-gray-600">ID</th>
-                            <th className="px-6 py-3 border-r border-gray-600">Nome</th>
-                            <th className="px-6 py-3 border-r border-gray-600">Descrição</th>
-                            <th className="px-6 py-3 border-r border-gray-600">Preço</th>
-                            <th className="px-6 py-3 border-r border-gray-600">Stock</th>
-                            <th className="px-6 py-3 border-r border-gray-600">Categoria</th>
-                            <th className="px-6 py-3 border-r border-gray-600"></th>
+                            <th className="px-6 py-3 border-r border-gray-400 dark:border-gray-600">ID</th>
+                            <th className="px-6 py-3 border-r border-gray-400 dark:border-gray-600">Nome</th>
+                            <th className="px-6 py-3 border-r border-gray-400 dark:border-gray-600">Descrição</th>
+                            <th className="px-6 py-3 border-r border-gray-400 dark:border-gray-600">Preço</th>
+                            <th className="px-6 py-3 border-r border-gray-400 dark:border-gray-600">Stock</th>
+                            <th className="px-6 py-3 border-r border-gray-400 dark:border-gray-600">Categoria</th>
+                            <th className="px-6 py-3 border-r border-gray-400 dark:border-gray-600"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {search.length === 0 ? games.length > 0 && games.map((game, idx) => {
                             return (
-                                <tr key={idx} className='border-b border-gray-700 hover:bg-gray-600 transition duration-300 ease-in-out'>
-                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{game.id}</td>
-                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{game.name}</td>
+                                <tr key={idx} className='border-b border-gray-400 hover:bg-gray-300 dark:border-gray-700 dark:hover:bg-gray-600 transition duration-300 ease-in-out'>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-black dark:text-white'>{game.id}</td>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-black dark:text-white'>{game.name}</td>
                                     <td>{game.description.slice(0, 80) + '...'}</td>
                                     <td>{game.price} €</td>
                                     <td>{game.stock} und.</td>
                                     <td>{game.Categories.name}</td>
-                                    <td><Link className='text-blue-400 text-md font-semibold' href={'admin/gerir/' + game.id}>Gerir</Link></td>
+                                    <td><Link className='text-blue-700 dark:text-blue-400 text-md text-right font-semibold' href={'admin/gerir/' + game.id}>Gerir</Link></td>
                                 </tr>
                             )
                         }) : search.map((game, idx) => {
                             return (
-                                <tr key={idx} className='border-b border-gray-700 hover:bg-gray-600 '>
-                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{game.id}</td>
-                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-white'>{game.name}</td>
+                                <tr key={idx} className='border-b border-gray-300 dark:border-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 '>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-black dark:text-white'>{game.id}</td>
+                                    <td className='px-6 py-4 font-medium whitespace-nowrap text-black dark:text-white'>{game.name}</td>
                                     <td>{game.description.slice(0, 80) + '...'}</td>
                                     <td>{game.price} €</td>
                                     <td>{game.stock} und.</td>
                                     <td>{game.category}</td>
-                                    <td><Link className='text-blue-400 text-md font-semibold' href={'admin/gerir/' + game.id}>Gerir</Link></td>
+                                    <td><Link className='text-blue-700 dark:text-blue-400 text-md text-right font-semibold' href={'admin/gerir/' + game.id}>Gerir</Link></td>
                                 </tr>
                             )
                         })}

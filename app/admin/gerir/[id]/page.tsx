@@ -41,20 +41,20 @@ export default function Gerir({ params }: { params: { id: number; } }) {
         return data.game
     })
 
-    if (isFetching) return (
-        <div className='bg-zinc-900 flex h-screen justify-center items-center'>
-            <MoonLoader size={45} color='white' />
+    if(isFetching) return (
+        <div className='bg-zinc-200 dark:bg-zinc-900 flex h-screen justify-center items-center'>
+            <MoonLoader size={45} className='text-black dark:text-white' />
         </div>
     )
 
-    if (isError || !data) return (
-        <div className='bg-zinc-900 flex h-screen justify-center items-center'>
+	if(isError) return (
+		<div className='bg-zinc-100 dark:bg-zinc-900 flex h-screen justify-center items-center'>
             <Message
-                message='Não foi possivel realizar a consulta deste jogo.'
-                variant='error'
-            />
+				variant='error'
+				message='Ocorreu um erro, não foi possivel realizar a consulta.'
+			/>
         </div>
-    )
+	)
 
     async function handleEditGame() {
         if (edit.newData === '' || edit.toData === '') return setEdit({ toData: '', oldData: '', newData: '' })
@@ -80,7 +80,7 @@ export default function Gerir({ params }: { params: { id: number; } }) {
     }
 
     return (
-        <div className='text-zinc-100'>
+        <div className='text-zinc-700 dark:text-zinc-100'>
             <div className='flex flex-row'>
                 <div className='w-72 h-64 object-fill ml-7 mt-5'>
                     <div className="relative max-w-xs overflow-hidden bg-cover bg-no-repeat">
@@ -90,7 +90,7 @@ export default function Gerir({ params }: { params: { id: number; } }) {
                             height={250}
                             alt={data.name + ' photo'}
                             onLoad={() => {
-                                return <MoonLoader size={25} color='white' />
+                                return <MoonLoader size={25} className='text-black dark:text-white'/>
                             }}
                             className='hover:bg-grey-600'
                         />
@@ -114,11 +114,11 @@ export default function Gerir({ params }: { params: { id: number; } }) {
                                 }}
                             />
                             <div
-                                className='border-2 border-zinc-700 rounded-full h-fit p-2 hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12 hover:scale-125'
+                                className='border-2  bg-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 rounded-full h-fit p-2 hover:bg-zinc-200 dark:hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12 hover:scale-125'
                                 onClick={handleEditGame}
                             >
 
-                                <BiCheck size={25} color='white' />
+                                <BiCheck size={25} className='text-black dark:text-white' />
                             </div>
                         </div>
                         :
@@ -126,7 +126,7 @@ export default function Gerir({ params }: { params: { id: number; } }) {
 
                             <h1 className='text-4xl font-semibold text-center'>{data.name}</h1>
                             <button
-                                className='border border-zinc-600 text-zinc-100 p-3 rounded-full font-semibold hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12'
+                                className='border bg-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 p-3 rounded-full font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12'
                                 onClick={() => {
                                     setEdit({
                                         toData: 'title',
@@ -156,19 +156,19 @@ export default function Gerir({ params }: { params: { id: number; } }) {
                             }}
                         />
                         <div
-                            className='border-2 border-zinc-700 rounded-full h-fit p-2 hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12 hover:scale-125'
+                           className='border-2  bg-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 rounded-full h-fit p-2 hover:bg-zinc-200 dark:hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12 hover:scale-125'
                             onClick={handleEditGame}
                         >
-                            <BiCheck size={25} color='white' />
+                            <BiCheck size={25} className='text-black dark:text-white' />
                         </div>
                     </div>
                         : (
                             <div className='flex flex-row space-x-2 items-center'>
-                                <p className='text-zinc-300 ml-4'>
+                                <p className='text-zinc-600 dark:text-zinc-300 ml-4'>
                                     {data.price} €
                                 </p>
                                 <button
-                                    className='border border-zinc-600 text-zinc-100 p-3 rounded-full font-semibold hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12'
+                                    className='border bg-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 p-3 rounded-full font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12 '
                                     onClick={() => {
                                         setEdit({
                                             toData: 'price',
@@ -199,20 +199,20 @@ export default function Gerir({ params }: { params: { id: number; } }) {
                                 {data.description}
                             </TextArea>
                             <div
-                                className='border-2 border-zinc-700 rounded-full h-fit p-2 hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12 hover:scale-125'
+                                className='border-2  bg-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 rounded-full h-fit p-2 hover:bg-zinc-200 dark:hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12 hover:scale-125'
                                 onClick={handleEditGame}
                             >
 
-                                <BiCheck size={25} color='white' />
+                                <BiCheck size={25} className='text-black dark:text-white' />
                             </div>
                         </div>
                         :
                         <div className='flex flex-row space-x-2 items-center'>
-                            <p className='text-zinc-400 ml-4'>
+                            <p className='text-zinc-500 dark:text-zinc-400 ml-4'>
                                 {data.description}
                             </p>
                             <button
-                                className='border border-zinc-600 text-zinc-100 p-3 rounded-full font-semibold hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12'
+                                className='border bg-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-100 p-3 rounded-full font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-600 transition duration-300 ease-in-out hover:rotate-12'
                                 onClick={() => {
                                     setEdit({
                                         toData: 'description',

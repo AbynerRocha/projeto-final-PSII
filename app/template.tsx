@@ -13,7 +13,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
         <QueryClientProvider client={reactQueryClient}>
             <AuthProvider>
-                <div className='h-screen flex flex-col flex-1 bg-zinc-900'>
+                <div className='h-screen flex flex-col flex-1 bg-zinc-200 dark:bg-zinc-900'>
                     <Header />
                     {children}
                 </div>

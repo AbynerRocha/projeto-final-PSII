@@ -31,29 +31,29 @@ export default function Header() {
     }
 
     return (
-        <header className='mb-6 w-full h-20 bg-zinc-800 flex items-center border-b-2 border-zinc-700'>
+        <header className='mb-6 w-full h-20 bg-zinc-300 dark:bg-zinc-800 flex items-center border-b-2 dark:border-zinc-700'>
             <div>
-                <Link href='/' className='text-3xl text-zinc-100 ml-4 font-semibold'>🚀 Game Space</Link>
+                <Link href='/' className='text-3xl text-zinc-700 dark:text-zinc-100 ml-4 font-semibold'>🚀 Game Space</Link>
             </div>
             <div className='flex flex-1 justify-end'>
-                <div className='rounded-md mr-3 py-3 px-4 bg-zinc-700 border border-zinc-900 text-zinc-100 flex items-center justify-center hover:bg-zinc-600'>
+                <div className='rounded-md mr-3 py-3 px-4 bg-zinc-200 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-900  text-zinc-700 dark:text-zinc-100 flex items-center justify-center hover:bg-zinc-300 dark:hover:bg-zinc-600'>
                     <input
-                        className=' border-none  bg-transparent focus:outline-none'
+                        className=' border-none bg-transparent focus:outline-none placeholder:text-zinc-700 dark:placeholder:text-zinc-300'
                         type="text"
                         placeholder='Pesquisar'
                     />
                     <button className='ml-1'>
-                        <FiSearch size={25} color='white' />
+                        <FiSearch size={25} className='text-zinc-700 darK:text-zinc-50' />
                     </button>
                 </div>
                 {auth.data.token
                     ? userPhoto()
-                    : <div className='flex items-center mx-3 border border-zinc-100 rounded-full cursor-pointer'>
+                    : <div className='flex items-center mx-3 border border-zinc-800 dark:border-zinc-100 rounded-full cursor-pointer'>
                         <Link
                             className='p-3'
                             href={'/login/'}
                         >
-                            <FiUser size={27} color='white' />
+                            <FiUser size={27} className='text-zinc-700 darK:text-zinc-50' />
                         </Link>
                     </div>}
 

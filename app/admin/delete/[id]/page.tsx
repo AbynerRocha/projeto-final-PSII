@@ -50,8 +50,8 @@ export default function DeleteGame({ params }: Params) {
     }
 
     return (
-        <div className='h-screen bg-zinc-900'>
-            <h1 className='text-center text-2xl font-semibold text-zinc-100 uppercase mb-5'>Você realmente quer deletar este jogo?</h1>
+        <div className='h-screen bg-zinc-200 dark:bg-zinc-900'>
+            <h1 className='text-center text-2xl font-semibold text-zinc-700 dark:text-zinc-100 uppercase mb-5'>Você realmente quer deletar este jogo?</h1>
             <div className='flex justify-center items-center'>
                 <div className='flex justify-center items-center flex-col space-y-3'>
                     <div className='w-[200px] h-[250px] object-fill'>
@@ -62,7 +62,7 @@ export default function DeleteGame({ params }: Params) {
                             height={250}
                         />
                     </div>
-                    <span className='text-lg font-semibold text-zinc-100'>{data.name}</span>
+                    <span className='text-lg font-semibold text-zinc-800 dark:text-zinc-100'>{data.name}</span>
                     <div className='space-x-3'>
                         <button onClick={handleDeleteGame} className='py-3 px-5 rounded-md font-semibold bg-red-600 text-zinc-100 hover:bg-red-500'>Sim</button>
                         <button    
